@@ -2,12 +2,13 @@ package br.com.senai.aluno.domain.utils;
 
 import br.com.senai.aluno.api.model.output.AlunoOutputDTO;
 import br.com.senai.aluno.domain.entities.Aluno;
-import br.com.senai.aluno.domain.entities.Frequencia;
+import br.com.senai.aluno.domain.entities.Chamada;
 import br.com.senai.aluno.domain.services.AlunoService;
-import br.com.senai.aluno.domain.services.FrequenciaService;
+import br.com.senai.aluno.domain.services.ChamadaService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,23 +16,25 @@ import java.util.List;
 @Service
 public class AlunoUtils {
     private AlunoService alunoService;
-    private FrequenciaService frequenciaService;
+    private ChamadaService chamadaService;
 
     public Aluno cadastrar(Aluno aluno) throws Exception {
-        Frequencia frequencia = new Frequencia();
+        Chamada chamada = new Chamada();
 
-        frequencia.setStatus(false);
-        frequencia.setMatricula_aluno(aluno.getMatricula());
+        //Cadastra na chamada como não presente, por padrão
+        chamada.setPresenca(false);
+        chamada.setMatricula_aluno(aluno.getMatricula());
+        chamada.setData_hora(LocalDateTime.now());
 
-        frequenciaService.cadastrar(frequencia);
+        chamadaService.cadastrar(chamada);
 
         return alunoService.cadastrar(aluno);
     }
 
     public void deletar(long matricula) throws Exception {
-        Frequencia frequencia = frequenciaService.buscarPorAluno(matricula).get();
+        Chamada chamada = chamadaService.buscarPorAluno(matricula).get();
 
-        frequenciaService.deletar(frequencia.getId());
+        chamadaService.deletar(chamada.getId());
 
         alunoService.deletar(matricula);
     }
@@ -48,7 +51,7 @@ public class AlunoUtils {
             alunoOutputDTO.setMatricula(aluno.getMatricula());
             alunoOutputDTO.setNome(aluno.getNome());
             alunoOutputDTO.setFrequencia(
-                    frequenciaService.buscarPorAluno(aluno.getMatricula()).get().isStatus()
+                    chamadaService.buscarPorAluno(aluno.getMatricula()).get().isPresenca()
             );
 
             alunoOutputDTOs.add(alunoOutputDTO);

@@ -3,14 +3,10 @@ package br.com.senai.aluno.api.model.input;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
-public class AlunoInputDTO {
-    private long matricula;
-
+public class ChamadaInputDTO {
     private String nome;
 
-    private int cpf;
+    private boolean presenca;
 }
