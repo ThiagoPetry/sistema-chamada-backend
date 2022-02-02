@@ -19,9 +19,9 @@ public class ChamadaUtils {
     private AlunoService alunoService;
 
     private Chamada editar(ChamadaInputDTO chamadaInputDTO) throws Exception {
-        Chamada novaChamada = chamadaService.buscarPorAluno(
-                alunoService.buscarPorNome(chamadaInputDTO.getNome()).get().getMatricula()).get();
-
+        Chamada novaChamada = chamadaService
+                .buscarPorAluno(alunoService.buscarPorNome(
+                        chamadaInputDTO.getNome()).get().getMatricula()).get();
         novaChamada.setPresenca(chamadaInputDTO.isPresenca());
 
         return chamadaService.editar(novaChamada.getId(), novaChamada);

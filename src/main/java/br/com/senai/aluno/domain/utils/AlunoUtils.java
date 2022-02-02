@@ -28,6 +28,8 @@ public class AlunoUtils {
 
         chamadaService.cadastrar(chamada);
 
+        aluno.setTurma("MI68");
+
         return alunoService.cadastrar(aluno);
     }
 
@@ -47,6 +49,7 @@ public class AlunoUtils {
         for (Aluno aluno : alunos) {
             AlunoOutputDTO alunoOutputDTO = new AlunoOutputDTO();
 
+            alunoOutputDTO.setTurma("MI68");
             alunoOutputDTO.setCpf(aluno.getCpf());
             alunoOutputDTO.setMatricula(aluno.getMatricula());
             alunoOutputDTO.setNome(aluno.getNome());

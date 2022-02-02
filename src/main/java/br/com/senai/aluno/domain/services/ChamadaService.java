@@ -24,7 +24,7 @@ public class ChamadaService {
 
     public Optional<Chamada> buscarPorAluno(long matricula) throws Exception {
         try {
-            return chamadaRepository.findByAlunoMatricula(matricula);
+            return chamadaRepository.findByMatriculaAluno(matricula);
         } catch (Exception ex) {
             throw new ExceptionTratement("Não foi possível buscar a frequência do aluno!");
         }

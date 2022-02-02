@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface ChamadaRepository extends JpaRepository<Chamada, Long> {
 
     @Query("SELECT f FROM Chamada f WHERE f.matricula_aluno = ?1")
-    Optional<Chamada> findByAlunoMatricula(long matricula);
+    Optional<Chamada> findByMatriculaAluno(long matricula);
 
 }

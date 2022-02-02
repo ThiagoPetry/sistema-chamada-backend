@@ -15,4 +15,6 @@ public class AlunoOutputDTO {
     private int cpf;
 
     private boolean frequencia;
+
+    private String turma;
 }

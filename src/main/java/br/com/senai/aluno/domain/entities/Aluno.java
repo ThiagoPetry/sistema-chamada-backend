@@ -17,4 +17,6 @@ public class Aluno {
     private String nome;
 
     private int cpf;
+
+    private String turma;
 }

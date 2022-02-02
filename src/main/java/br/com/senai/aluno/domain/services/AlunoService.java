@@ -50,6 +50,7 @@ public class AlunoService {
     public Aluno editar(long matricula, Aluno aluno) throws Exception {
         try {
             aluno.setMatricula(matricula);
+            aluno.setTurma("MI68");
 
             return alunoRepository.save(aluno);
         } catch (Exception ex) {
